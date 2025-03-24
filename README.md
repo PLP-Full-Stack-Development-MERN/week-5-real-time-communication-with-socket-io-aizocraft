@@ -1,64 +1,146 @@
-**Week 5: Real-Time Communication with Socket.io**
+# Real-Time Collaborative Notes App
 
-**Objective:**
+A full-stack MERN application with Socket.io for real-time collaboration. Multiple users can simultaneously edit notes in shared rooms with changes reflected instantly.
 
-- Develop a real-time web application utilizing Socket.io.
-- Apply concepts of WebSockets, rooms, and namespaces.
-- Understand how to integrate real-time functionality into a full-stack MERN application.
+![App Screenshot](https://via.placeholder.com/800x500?text=Real-Time+Collaborative+Notes+Screenshot)
 
-**Project Suggestion:** Build a "Real-Time Collaborative Notes" application that allows multiple users to create, edit, and view notes in real time.
+## Features
 
-**Instructions:**
+- Real-time note editing with Socket.io
+- Room-based collaboration
+- Live user presence indicators
+- Simple and intuitive UI
+- Responsive design
 
-1. **Project Setup:**
-   - Create a new project folder named `real-time-notes`.
-   - Set up a backend using Express.js and Socket.io.
-   - Initialize a frontend using React.
+## Tech Stack
 
-2. **Application Features:**
-   - Users should be able to:
-     - Join a specific "room" to collaborate on a shared note.
-     - See real-time updates when another user edits the note.
-     - Create new notes and edit existing ones.
-     - Receive notifications when a new user joins or leaves a room.
+| Frontend               | Backend              | Real-Time           | Database (Optional) |
+|------------------------|----------------------|---------------------|---------------------|
+| React 18               | Express.js           | Socket.io           | MongoDB             |
+| Vite                   | Node.js              | WebSockets          | Mongoose            |
+| Tailwind CSS 3.3       | REST API             |                     |                     |
+| React Router           | CORS middleware      |                     |                     |
 
-3. **Backend Requirements:**
-   - Implement WebSocket connections using Socket.io.
-   - Create RESTful endpoints for saving and retrieving notes.
-   - Implement room-based communication for collaborative editing.
+## Project Structure
+```bash
 
-4. **Frontend Requirements:**
-   - Implement a UI for creating, viewing, and editing notes.
-   - Allow users to join specific rooms via a unique URL or code.
-   - Display a list of online users in each room.
+real-time-notes/
+├── backend/ # Express + Socket.io server
+│ ├── config/ # Configuration files
+│ ├── controllers/ # Business logic
+│ ├── models/ # Database models
+│ ├── routes/ # API routes
+│ ├── app.js # Express app setup
+│ ├── server.js # HTTP server + Socket.io
+│ └── package.json
+│
+├── frontend/ # React application
+│ ├── public/ # Static assets
+│ ├── src/
+│ │ ├── components/ # Reusable UI components
+│ │ ├── context/ # React context providers
+│ │ ├── hooks/ # Custom hooks
+│ │ ├── pages/ # Page components
+│ │ ├── App.jsx # Main component
+│ │ └── main.jsx # Entry point
+│ ├── package.json
+│ ├── vite.config.js
+│ └── tailwind.config.js
+│
+├── .gitignore
+└── README.md
+```
 
-5. **State Management:**
-   - Use React state and context API to manage application state.
-   - Handle incoming real-time data efficiently to update UI.
+## API Endpoints
 
-6. **Testing:**
-   - Test real-time functionality by opening multiple browser tabs.
-   - Ensure messages and updates are reflected correctly across all clients.
+| Method | Endpoint          | Description                          |
+|--------|-------------------|--------------------------------------|
+| GET    | /                 | Health check                         |
+| GET    | /api/notes/:room  | Get note for a room (future feature) |
+| POST   | /api/notes        | Save a note (future feature)         |
 
-7. **Deployment:**
-   - Deploy the backend to a cloud service such as Render.
-   - Deploy the frontend to Vercel.
-   - Ensure proper environment variable setup for production.
+Socket.io Events:
+- `join-room`: Join a collaboration room
+- `update-note`: Broadcast note changes
+- `note-updated`: Receive note updates
+- `user-connected`: Notify when users join
 
-8. **Documentation:**
-   - Write a `README.md` file including:
-     - Project overview.
-     - Steps to install and run the project.
-     - Explanation of key real-time concepts used.
+## Installation
 
-9. **Submission:**
-   - Push your project to your GitHub repository.
+### Prerequisites
 
-**Evaluation Criteria:**
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- MongoDB (optional for future features)
 
-- Proper implementation of WebSocket communication.
-- Ability to join rooms and collaborate in real-time.
-- Clean UI and responsive design.
-- Structured and well-documented code.
-- Successful deployment and working application link.
+### Backend Setup
 
+1. Navigate to backend directory:
+   ```bash
+   cd backend
+
+    Install dependencies:
+    bash
+    Copy
+
+    npm install
+
+    Create .env file:
+    bash
+    Copy
+
+    touch .env
+
+    Add environment variables:
+    env
+    Copy
+
+    PORT=3001
+    CLIENT_URL=http://localhost:5173
+    # MONGODB_URI=mongodb://localhost:27017/real-time-notes 
+
+    Start the server:
+    bash
+    Copy
+
+    npm start
+    # or for development with nodemon:
+    npm run dev
+
+Frontend Setup
+
+    Navigate to frontend directory:
+    bash
+    Copy
+
+    cd ../frontend
+
+    Install dependencies:
+    bash
+    Copy
+
+    npm install
+
+    Start the development server:
+    bash
+    Copy
+
+    npm run dev
+
+    Open your browser at:
+    Copy
+
+    http://localhost:5173
+
+Running the Application
+
+    Start both servers as described above
+
+    Open two browser windows/tabs
+
+    Navigate to http://localhost:5173 in both
+
+    Enter the same room ID in both windows
+
+    Start typing in one window - changes will appear in real-time in the other
+ 
